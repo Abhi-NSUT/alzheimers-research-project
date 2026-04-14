@@ -1,0 +1,18 @@
+# Data files (often too large for GitHub)
+*.pkl
+*.csv
+*.zip
+
+# OS files
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# IDEs
+.vscode/
+.idea/
+
+# Notebooks
+.ipynb_checkpoints/
