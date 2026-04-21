@@ -20,8 +20,7 @@ sns.set_theme(style="whitegrid")
 # --- DYNAMIC SEED HUNTER (Finds and Prints the Perfect 94%+ Seed) ---
 ACTIVE_SEED = int(time.time() * 1000) % 100000 
 print("\n" + "="*50)
-print(f"🌟 ACTIVE SEED FOR THIS RUN: {ACTIVE_SEED} 🌟")
-print(f"WRITE THIS NUMBER DOWN IF IT HITS 94%!")
+print(f" ACTIVE SEED FOR THIS RUN: {ACTIVE_SEED} ")
 print("="*50 + "\n")
 
 os.environ['PYTHONHASHSEED'] = str(ACTIVE_SEED)
@@ -30,9 +29,7 @@ np.random.seed(ACTIVE_SEED)
 random.seed(ACTIVE_SEED)
 tf.random.set_seed(ACTIVE_SEED)
 
-print("====================================")
 print("1. LOADING & PREPARING DATA...")
-print("====================================")
 
 X_train_ = pd.read_pickle("img_train.pkl")["img_array"]
 X_test_  = pd.read_pickle("img_test.pkl")["img_array"]
@@ -48,9 +45,7 @@ X_train, y_train = shuffle(X_train, y_train, random_state=42)
 class_weights_array = compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
 class_weights_dict = {i: weight for i, weight in enumerate(class_weights_array)}
 
-print("====================================")
 print("2. DEFINING THE SE-ATTENTION MODEL (92.64% BASELINE)...")
-print("====================================")
 
 def build_se_model():
     def se_block(input_tensor, ratio=8):
@@ -89,9 +84,7 @@ def build_se_model():
     )
     return model
 
-print("====================================")
 print("3. TRAINING THE 3x ENSEMBLE SYSTEM...")
-print("====================================")
 
 NUM_MODELS = 3
 all_test_predictions = []
@@ -122,20 +115,16 @@ for i in range(NUM_MODELS):
     all_test_predictions.append(test_preds)
     trained_expert_models.append(model)
 
-print("\n====================================")
 print("4. AVERAGING THE EXPERTS...")
-print("====================================")
 
 all_test_predictions = np.array(all_test_predictions)
 ensemble_probabilities = np.mean(all_test_predictions, axis=0)
 ensemble_final_labels = np.argmax(ensemble_probabilities, axis=1)
 
 final_accuracy = accuracy_score(y_test, ensemble_final_labels)
-print(f"\n🎉 ULTIMATE ENSEMBLE TEST ACCURACY: {final_accuracy:.4f} 🎉")
+print(f"\n ULTIMATE ENSEMBLE TEST ACCURACY: {final_accuracy:.4f} ")
 
-print("\n====================================")
 print("5. SAVING 94% GOLDEN MODELS TO HARD DRIVE...")
-print("====================================")
 save_dir = f"saved_golden_models_seed_{ACTIVE_SEED}_acc_{final_accuracy:.4f}"
 os.makedirs(save_dir, exist_ok=True)
 
@@ -143,11 +132,9 @@ for i, exp_model in enumerate(trained_expert_models):
     exp_model.save(f"{save_dir}/expert_model_{i+1}.h5")
 
 print(f"-> Securely saved the exact Neural Network weights inside folder: {save_dir}/")
-print(f"🌟 CRITICAL REMINDER! YOUR LUCKY SEED WAS: {ACTIVE_SEED} 🌟")
+print(f" CRITICAL REMINDER! YOUR LUCKY SEED WAS: {ACTIVE_SEED} ")
 
-print("\n====================================")
 print("6. GENERATING MAXIMUM VISUALIZATION GRAPHS...")
-print("====================================")
 class_names = ['Class 0', 'Class 1', 'Class 2']
 
 # 1. CONFUSION MATRIX HEATMAP

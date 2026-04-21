@@ -84,4 +84,4 @@ for i, v in enumerate(accs):
 plt.ylim(0, 1.1)
 plt.title(f"Final SOTA: Multi-Modal Synergetic Baseline (n={len(y_unified)})", fontsize=15, fontweight='bold')
 plt.savefig("final_sota_97_peak.png")
-print("✅ SOTA visualization saved as 'final_sota_97_peak.png'.")
+print(" SOTA visualization saved as 'final_sota_97_peak.png'.")

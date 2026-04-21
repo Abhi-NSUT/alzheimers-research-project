@@ -47,11 +47,11 @@ try:
     with open('final_aligned_sota_cohort.pkl', 'wb') as f:
         pickle.dump(final_matched_data, f)
     print("\n" + "="*50)
-    print(f"🚀 SUCCESS! Aligned Cohort Created: {len(final_matched_data)} samples.")
+    print(f" SUCCESS! Aligned Cohort Created: {len(final_matched_data)} samples.")
     print("Outcome: final_aligned_sota_cohort.pkl is now row-for-row correct.")
     print("STEP 2: RUN 'evaluate_fusion.py' NOW.")
     print("="*50)
     
 except Exception as e:
-    print(f"\n❌ BUILD FAILED: {e}")
+    print(f"\n BUILD FAILED: {e}")
     print("Verify that your clinical .pkl and .csv files match perfectly.")

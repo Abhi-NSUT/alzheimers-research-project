@@ -13,10 +13,8 @@ ACTIVE_SEED = int(time.time() * 1000) % 100000
 os.environ['PYTHONHASHSEED'] = str(ACTIVE_SEED)
 np.random.seed(ACTIVE_SEED); random.seed(ACTIVE_SEED); tf.random.set_seed(ACTIVE_SEED)
 
-print(f"\n🌟 RESEARCH GOLD-STANDARD MULTI-MODAL TRAINER (SEED: {ACTIVE_SEED}) 🌟\n")
-
-# --- 1. DATA LOADING (HIGH PRECISION) ---
-print("1. LOADING HIGH-PRECISION DATASETS...")
+# --- 1. DATA LOADING ---
+print("1. LOADING DATASETS...")
 
 # Imaging (8,063 scans)
 X_img_tr_f = pd.read_pickle("img_train.pkl")["img_array"]
@@ -68,7 +66,7 @@ NUM_MODELS = 10
 S_DIR = f"final_research_models_{ACTIVE_SEED}"
 os.makedirs(S_DIR, exist_ok=True)
 
-print(f"2. TRAINING 20-EXPERT SYSTEM (10 IMAGING + 10 CLINICAL)...")
+print(f"2. TRAINING (10 IMAGING + 10 CLINICAL)...")
 i_probs, c_probs = [], []
 es_img = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
 es_cl = keras.callbacks.EarlyStopping(monitor='val_loss', patience=15, restore_best_weights=True)
@@ -93,8 +91,7 @@ for n in range(NUM_MODELS):
 i_acc = accuracy_score(y_img_te, np.argmax(np.mean(i_probs, axis=0), axis=1))
 c_acc = accuracy_score(y_cl_te, np.argmax(np.mean(c_probs, axis=0), axis=1))
 
-print(f"\n✅ RESEARCH RESULTS COMPILED:")
+print(f"\n RESEARCH RESULTS COMPILED:")
 print(f"Imaging Ensemble Accuracy  : {i_acc:.4f}  (Highest Achievement)")
 print(f"Clinical Ensemble Accuracy : {c_acc:.4f}  (Highest Achievement)")
 print(f"Models Saved In: {S_DIR}/")
-print(f"Final Outcome: Use these independent accuracies to demonstrate state-of-the-art performance.")

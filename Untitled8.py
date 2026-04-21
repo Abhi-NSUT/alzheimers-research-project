@@ -9,9 +9,7 @@ from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, Flatten, Dense,
 from tensorflow.keras.models import Model
 from tensorflow.keras.applications import DenseNet121
 
-print("====================================")
 print("1. LOADING & PREPARING DATA...")
-print("====================================")
 
 X_train_ = pd.read_pickle("img_train.pkl")["img_array"]
 X_test_  = pd.read_pickle("img_test.pkl")["img_array"]
@@ -29,9 +27,7 @@ X_train, y_train = shuffle(X_train, y_train, random_state=42)
 class_weights_array = compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
 class_weights_dict = {i: weight for i, weight in enumerate(class_weights_array)}
 
-print("====================================")
 print("2. DEFINING THE TRANSFER LEARNING MODEL (DenseNet121)...")
-print("====================================")
 
 def build_densenet_model():
     inputs = Input(shape=(72, 72, 3))
@@ -73,9 +69,7 @@ def build_densenet_model():
     )
     return model
 
-print("====================================")
 print("3. TRAINING THE ENSEMBLE (3 DENSENET EXPERTS)...")
-print("====================================")
 
 NUM_MODELS = 3
 all_test_predictions = []
@@ -104,9 +98,7 @@ for i in range(NUM_MODELS):
     test_preds = model.predict(X_test, batch_size=16)
     all_test_predictions.append(test_preds)
 
-print("\n====================================")
 print("4. AVERAGING THE DENSENET EXPERTS...")
-print("====================================")
 
 # Convert list of predictions to a 3D Numpy Array
 all_test_predictions = np.array(all_test_predictions)
@@ -118,4 +110,4 @@ ensemble_probabilities = np.mean(all_test_predictions, axis=0)
 ensemble_final_labels = np.argmax(ensemble_probabilities, axis=1)
 
 final_accuracy = accuracy_score(y_test, ensemble_final_labels)
-print(f"\n🏆 ULTIMATE 216x216 DENSENET ENSEMBLE ACCURACY: {final_accuracy:.4f} 🏆")
+print(f"\n216x216 DENSENET ENSEMBLE ACCURACY: {final_accuracy:.4f}")

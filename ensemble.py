@@ -14,9 +14,7 @@ from tensorflow.keras.models import Model
 # Setup aesthetics for plots
 sns.set_theme(style="whitegrid")
 
-print("====================================")
 print("1. LOADING & PREPARING DATA...")
-print("====================================")
 
 X_train_ = pd.read_pickle("img_train.pkl")["img_array"]
 X_test_  = pd.read_pickle("img_test.pkl")["img_array"]
@@ -32,9 +30,7 @@ X_train, y_train = shuffle(X_train, y_train, random_state=42)
 class_weights_array = compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
 class_weights_dict = {i: weight for i, weight in enumerate(class_weights_array)}
 
-print("====================================")
 print("2. DEFINING THE SE-ATTENTION MODEL (92.64% BASELINE)...")
-print("====================================")
 
 # We are using the pure 3-model SE Engine without the 5x L2 Regularization
 # Because this is what gave us the absolute best 92.64% score!
@@ -75,9 +71,7 @@ def build_se_model():
     )
     return model
 
-print("====================================")
 print("3. TRAINING THE 3x ENSEMBLE SYSTEM...")
-print("====================================")
 
 NUM_MODELS = 3
 all_test_predictions = []
@@ -106,20 +100,16 @@ for i in range(NUM_MODELS):
     test_preds = model.predict(X_test)
     all_test_predictions.append(test_preds)
 
-print("\n====================================")
 print("4. AVERAGING THE EXPERTS...")
-print("====================================")
 
 all_test_predictions = np.array(all_test_predictions)
 ensemble_probabilities = np.mean(all_test_predictions, axis=0)
 ensemble_final_labels = np.argmax(ensemble_probabilities, axis=1)
 
 final_accuracy = accuracy_score(y_test, ensemble_final_labels)
-print(f"\n🎉 ULTIMATE ENSEMBLE TEST ACCURACY: {final_accuracy:.4f} 🎉")
+print(f"\n ENSEMBLE TEST ACCURACY: {final_accuracy:.4f} ")
 
-print("\n====================================")
 print("5. GENERATING MAXIMUM VISUALIZATION GRAPHS...")
-print("====================================")
 class_names = ['Class 0', 'Class 1', 'Class 2']
 
 # 1. CONFUSION MATRIX HEATMAP
@@ -328,4 +318,3 @@ try:
 except Exception as e:
     print(f"Failed to plot Learning Curves: {e}")
 
-print("\nALL 10 VISUALIZATION GRAPHS HAVE BEEN COMPILED AND SAVED!")

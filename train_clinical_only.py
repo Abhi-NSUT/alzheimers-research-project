@@ -36,6 +36,6 @@ for n in range(10):
 
 # --- 4. RESULTS ---
 final_acc = accuracy_score(y_te, np.argmax(np.mean(all_probs, axis=0), axis=1))
-print(f"\n🚀 RE-TRAINING COMPLETE!")
+print(f"\n RE-TRAINING COMPLETE!")
 print(f"Update Clinical Ensemble Accuracy: {final_acc:.4f}")
 print("Models saved in: updated_clinical_experts/")

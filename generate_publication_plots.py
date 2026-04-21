@@ -179,5 +179,4 @@ plt.xlabel('Imaging Weight (Alpha)'); plt.ylabel('Fusion Accuracy')
 plt.title('FIG11: Synergy Landscape - Weight vs Performance', fontsize=14); plt.legend(); save_chart('FIG11_sensitivity.png')
 
 print("\n" + "="*50)
-print(f"✅ ALL 11 FIGURES MEASURED AND ANNOTATED IN: {OUTPUT_DIR}")
-print("==================================================")
+print(f" ALL 11 FIGURES MEASURED AND ANNOTATED IN: {OUTPUT_DIR}")

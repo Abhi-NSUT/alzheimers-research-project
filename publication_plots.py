@@ -110,8 +110,3 @@ def plot_metrics_bars(y_img, i_probs, y_cl, c_probs):
     print(" -> Saved Fig3_Performance_Benchmarking.png")
 
 plot_metrics_bars(y_img_te, i_probs, y_cl_te, c_probs)
-
-print("\n🎉 ALL PUBLICATION FIGURES GENERATED SUCCESSFULLY! 🎉")
-print("- Fig1_Imaging_CM.png: Imaging Confusion Matrix")
-print("- Fig2_Imaging_ROC.png: Imaging ROC Curves")
-print("- Fig3_Performance_Benchmarking.png: Modality Comparison")

@@ -60,12 +60,11 @@ for w in np.linspace(0.01, 0.99, 401):
 
 # Final Verification
 print("\n" + "="*50)
-print(f"📊 DEFINITIVE SOTA RESULTS (UNSEEN COHORT n=57)")
+print(f" DEFINITIVE SOTA RESULTS (UNSEEN COHORT n=57)")
 print(f"Imaging Baseline Accuracy  : {i_acc:.4f}")
 print(f"Clinical Baseline Accuracy : {c_acc:.4f}")
-print(f"🏆 PEAK MULTI-MODAL FUSION : {best_fusion_acc:.4f} (FINAL SOTA)")
+print(f" PEAK MULTI-MODAL FUSION : {best_fusion_acc:.4f} (FINAL SOTA)")
 print(f"Optimal Fusion Weighting   : {best_w:.4f} Img / {1-best_w:.4f} Clin")
-print("Target Threshold Status     : 97% CROSS-PLATFORM PASSED ✅")
 print("="*50 + "\n")
 
 # Save Visualization
@@ -76,4 +75,4 @@ for i, v in enumerate([i_acc, c_acc, best_fusion_acc]):
 plt.ylim(0, 1.1)
 plt.title(f"Final Alzheimer Multi-Modal Challenge (SOTA Result n={overlap_n})", fontsize=14)
 plt.savefig("golden_sota_97_winner.png")
-print("✅ Final gold-standard plot saved as 'golden_sota_97_winner.png'.")
+print(" Final gold-standard plot saved as 'golden_sota_97_winner.png'.")

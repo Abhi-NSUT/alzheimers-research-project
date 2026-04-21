@@ -7,9 +7,7 @@ from tensorflow import keras
 from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, Flatten, Dense, Dropout, GlobalAveragePooling2D, Reshape, Multiply, Add
 from tensorflow.keras.models import Model
 
-print("====================================")
 print("1. LOADING DATA FROM PICKLE FILES...")
-print("====================================")
 
 X_train_ = pd.read_pickle("img_train.pkl")["img_array"]
 X_test_  = pd.read_pickle("img_test.pkl")["img_array"]
@@ -28,9 +26,7 @@ print(f"Data successfully loaded and shuffled!")
 print(f"X_train shape: {X_train.shape}")
 print(f"y_train shape: {y_train.shape}\n")
 
-print("====================================")
 print("3. BUILDING THE DEEP ATTENTION MODEL...")
-print("====================================")
 
 # THE ATTENTION MECHANISM (Squeeze-and-Excite)
 def se_block(input_tensor, ratio=8):
@@ -90,9 +86,7 @@ early_stop = keras.callbacks.EarlyStopping(
     restore_best_weights=True
 )
 
-print("====================================")
 print("4. TRAINING MODEL WITH ATTENTION...")
-print("====================================")
 
 history_attention = model_attention.fit(
     X_train, y_train, 
@@ -104,10 +98,7 @@ history_attention = model_attention.fit(
     verbose=1 
 )
 
-print("")
-print("====================================")
 print("5. EVALUATING ACCURACY...")
-print("====================================")
 
 score = model_attention.evaluate(X_test, y_test, verbose=0)
 print(f"\nFINAL True Test Accuracy: {score[1]:.4f}")
@@ -116,4 +107,3 @@ print(f"\nFINAL True Test Accuracy: {score[1]:.4f}")
 test_predictions = model_attention.predict(X_test)
 predicted_label = np.argmax(test_predictions, axis=1)
 
-print("\nDone! Feel free to copy these variables over to your visualization block.")
