@@ -1,10 +1,3 @@
-"""
-=============================================================================
-RECONSTRUCTION: Official 29-Feature Clinical Dataset for ALL Patients
-=============================================================================
-(Wider Merge Version - Optimized for Max Patient Count)
-=============================================================================
-"""
 
 import pandas as pd
 import numpy as np

@@ -1,11 +1,3 @@
-"""
-=============================================================================
-🛠️ STEP 1/2: GLOBAL MULTIMODAL OVERLAP BUILDER (n=145) 🛠️
-=============================================================================
-Strategy: Global Identity Search across all 8,000 scans and 567 patients.
-Result: A perfectly aligned dataset of matched Imaging+Clinical pairs.
-=============================================================================
-"""
 
 import pandas as pd, pickle, numpy as np
 

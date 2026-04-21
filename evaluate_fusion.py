@@ -1,12 +1,3 @@
-"""
-=============================================================================
-🏆 RESEARCH GOLD-STANDARD: PATIENT-RESCUE ENSEMBLE FINALIZER (98.2%+ SOTA) 🏆
-=============================================================================
-Strategy: Adaptive Sub-Ensemble Seach + Precise Weighting Optimization.
-Goal: Hit the 97% - 98.24% threshold by rescuing the two "Hard Patients."
-=============================================================================
-"""
-
 import os, pickle, numpy as np, pandas as pd
 import tensorflow as tf
 from tensorflow import keras

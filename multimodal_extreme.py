@@ -1,13 +1,3 @@
-"""
-=============================================================================
-🔥 THE MODALITY MASTER: RESEARCH GOLD-STANDARD ENSEMBLE 🔥
-=============================================================================
-Architecture: 20-Model Multi-Modal Ensemble (10 x Imaging + 10 x Clinical)
-Target: 97%+ Accuracy via Decision-Level Late Fusion.
-Optimized for: Powerful GPU Server / Dedicated Training Rig.
-=============================================================================
-"""
-
 import os, random, time, pickle, numpy as np, pandas as pd
 import tensorflow as tf
 from tensorflow import keras

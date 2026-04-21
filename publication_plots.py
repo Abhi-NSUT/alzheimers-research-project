@@ -1,11 +1,3 @@
-"""
-=============================================================================
-🌟 RESEARCH VISUALIZATION SUITE: ADNI MULTI-MODAL SOTA 🌟
-=============================================================================
-Generates publication-quality figures for fMRI & Clinical Ensembles.
-Produces: ROC Curves, Confusion Matrices, and Performance Benchmarks.
-=============================================================================
-"""
 
 import os, pickle, numpy as np, pandas as pd
 import matplotlib.pyplot as plt

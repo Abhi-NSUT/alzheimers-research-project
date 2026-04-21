@@ -1,12 +1,3 @@
-"""
-=============================================================================
-🌍 RESEARCH GOLD-STANDARD: UNIFIED LABEL MULTI-MODAL PIPELINE (97%+) 🌍
-=============================================================================
-Strategy: Unified Labeling (MCI=0, CN=1, AD=2) for all 145 Overlapping Samples.
-Goal: Restore 94%+ Baseline and hit 97%+ Fusion Peak for the manuscript.
-=============================================================================
-"""
-
 import os, pickle, numpy as np, pandas as pd
 import tensorflow as tf
 from tensorflow import keras
